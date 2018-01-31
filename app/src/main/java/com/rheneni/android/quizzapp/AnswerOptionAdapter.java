@@ -36,6 +36,7 @@ public class AnswerOptionAdapter extends RecyclerView.Adapter<AnswerOptionAdapte
                 @Override
                 public void onClick(View view) {
                     lastSelectedPosition = getAdapterPosition();
+
                     notifyDataSetChanged();
                 }
             });
@@ -67,7 +68,7 @@ public class AnswerOptionAdapter extends RecyclerView.Adapter<AnswerOptionAdapte
 
         AnswerOption answerOption = mAnswersList.get(position);
 
-        holder.answerText.setText(String.format(Locale.getDefault(), "%d - %s",
+        holder.answerText.setText(String.format(Locale.getDefault(), "%d: %s",
                 answerOption.getOrderNumber(),
                 getStringFromResourcesByName(
                         "question" +
@@ -76,6 +77,7 @@ public class AnswerOptionAdapter extends RecyclerView.Adapter<AnswerOptionAdapte
                         answerOption.getOrderNumber()
                 )));
         holder.answerRadio.setChecked(lastSelectedPosition == position);
+        mAnswersList.get(position).setIsChecked(lastSelectedPosition == position);
     }
 
     @Override

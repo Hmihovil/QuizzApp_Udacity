@@ -5,14 +5,11 @@ import android.support.annotation.IntDef;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-/**
- * Created by Lenovo on 22/01/2018.
- */
-
 public class AnswerOption {
     private int mOrderNum = 0;
     private String mOptionText = "";
     private int mQuestionNumber = 0;
+    private boolean isChecked = false;
     private @OptionType int mOptionType = OPTION_TYPE_RADIO;
 
     public AnswerOption(int questionNumber, String text, int number, @OptionType int optionTypes) {
@@ -45,6 +42,14 @@ public class AnswerOption {
     public int getQuestionNumber() {
         return mQuestionNumber;
     }
+
+    public void setIsChecked(boolean isChecked) {
+        this.isChecked = isChecked;
+    }
+    public boolean getIsChecked() {
+        return isChecked;
+    }
+    
     public static final int OPTION_TYPE_RADIO = 0;
     public static final int OPTION_TYPE_CHECKBOX = 1;
 

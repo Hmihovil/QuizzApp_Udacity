@@ -1,74 +1,76 @@
 <resources>
     <string name="app_name">QuizzApp</string>
-    <string name="question1">What did you learn with this course?</string>
-    <string name="question1_option1">Option 1</string>
-    <string name="question1_option2">Option 2</string>
-    <string name="question1_option3">Option 3</string>
-    <string name="question1_option4">Option 4</string>
-    <string name="question1_option5">Option 5</string>
+    <string name="question1">This Course was about:</string>
+    <string name="question1_option1">Learning C++</string>
+    <string name="question1_option2">Learning advanced Java</string>
+    <string name="question1_option3">Programming</string>
+    <string name="question1_option4">Learning Java for Android</string>
+    <string name="question1_option5">None of the others</string>
 
-    <string name="question2">What are the main keywords?</string>
-    <string name="question2_option1">Option 1</string>
-    <string name="question2_option2">Option 2</string>
-    <string name="question2_option3">Option 3</string>
-    <string name="question2_option4">Option 4</string>
-    <string name="question2_option5">Option 5</string>
+    <string name="question2">Which of these are Views?</string>
+    <string name="question2_option1">LineLayout</string>
+    <string name="question2_option2">ScrollingView</string>
+    <string name="question2_option3">RelativeLayout</string>
+    <string name="question2_option4">TextsView</string>
+    <string name="question2_option5">Button</string>
 
-    <string name="question3">Question 3</string>
-    <string name="question3_option1">Option 1</string>
-    <string name="question3_option2">Option 2</string>
-    <string name="question3_option3">Option 3</string>
-    <string name="question3_option4">Option 4</string>
-    <string name="question3_option5">Option 5</string>
+    <string name="question3">Which of these is incorrect?</string>
+    <string name="question3_option1">int x = 4;</string>
+    <string name="question3_option2">String name = &quot;John Doe&quot;;</string>
+    <string name="question3_option3">number = 13;</string>
+    <string name="question3_option4">bool e = 2 == 2;</string>
+    <string name="question3_option5">bool OK = false;</string>
 
-    <string name="question4">Question 4</string>
-    <string name="question4_option1">Option 1</string>
-    <string name="question4_option2">Option 2</string>
-    <string name="question4_option3">Option 3</string>
-    <string name="question4_option4">Option 4</string>
-    <string name="question4_option5">Option 5</string>
+    <string name="question4">Android versions have the name of:</string>
+    <string name="question4_option1">Important People</string>
+    <string name="question4_option2">Lollipop</string>
+    <string name="question4_option3">Professionals</string>
+    <string name="question4_option4">Sweets</string>
+    <string name="question4_option5">Have no names</string>
 
-    <string name="question5">Question 5</string>
-    <string name="question5_option1">Option 1</string>
-    <string name="question5_option2">Option 2</string>
-    <string name="question5_option3">Option 3</string>
-    <string name="question5_option4">Option 4</string>
-    <string name="question5_option5">Option 5</string>
+    <string name="question5">During this Course the IDE we used was:</string>
+    <string name="question5_option1">Eclipse</string>
+    <string name="question5_option2">Android</string>
+    <string name="question5_option3">Udacity</string>
+    <string name="question5_option4">AppMaker</string>
+    <string name="question5_option5">Android Studio</string>
 
-    <string name="question6">Question 6</string>
-    <string name="question6_option1">Option 1</string>
-    <string name="question6_option2">Option 2</string>
-    <string name="question6_option3">Option 3</string>
-    <string name="question6_option4">Option 4</string>
-    <string name="question6_option5">Option 5</string>
+    <string name="question6">One of the projects we did was about:</string>
+    <string name="question6_option1">Scoring</string>
+    <string name="question6_option2">Programming</string>
+    <string name="question6_option3">Eating</string>
+    <string name="question6_option4">Mathematics</string>
+    <string name="question6_option5">Communication</string>
 
-    <string name="question7">Question 7</string>
-    <string name="question7_option1">Option 1</string>
-    <string name="question7_option2">Option 2</string>
-    <string name="question7_option3">Option 3</string>
-    <string name="question7_option4">Option 4</string>
-    <string name="question7_option5">Option 5</string>
+    <string name="question7">public int getString(){ String x = &quot;John!&quot;; return x.length();}  What
+        is the return of this function?</string>
+    <string name="question7_option1">John</string>
+    <string name="question7_option2">&quot;John!&quot;</string>
+    <string name="question7_option3">x.length()</string>
+    <string name="question7_option4">0</string>
+    <string name="question7_option5">5</string>
 
-    <string name="question8">Question 8</string>
-    <string name="question8_option1">Option 1</string>
-    <string name="question8_option2">Option 2</string>
-    <string name="question8_option3">Option 3</string>
-    <string name="question8_option4">Option 4</string>
-    <string name="question8_option5">Option 5</string>
+    <string name="question8">When was the first commercial Android device launched?</string>
+    <string name="question8_option1">2008</string>
+    <string name="question8_option2">2007</string>
+    <string name="question8_option3">2005</string>
+    <string name="question8_option4">2002</string>
+    <string name="question8_option5">2000</string>
 
-    <string name="question9">Question 9</string>
-    <string name="question9_option1">Option 1</string>
-    <string name="question9_option2">Option 2</string>
-    <string name="question9_option3">Option 3</string>
-    <string name="question9_option4">Option 4</string>
-    <string name="question9_option5">Option 5</string>
+    <string name="question9">How many students have enrolled Udacity?</string>
+    <string name="question9_option1">  5 000&#8211; 25 000</string>
+    <string name="question9_option2"> 25 000&#8211; 50 000</string>
+    <string name="question9_option3">100 000&#8211;150 000</string>
+    <string name="question9_option4">150 000&#8211;200 000</string>
+    <string name="question9_option5">200 000&#8211;250 000</string>
 
-    <string name="question10">Question 10</string>
-    <string name="question10_option1">Option 1</string>
-    <string name="question10_option2">Option 2</string>
-    <string name="question10_option3">Option 3</string>
-    <string name="question10_option4">Option 4</string>
-    <string name="question10_option5">Option 5</string>
+    <string name="question10">Your score in this quizz will be:</string>
+    <string name="question10_option1">2</string>
+    <string name="question10_option2">3</string>
+    <string name="question10_option3">0</string>
+    <string name="question10_option4">10</string>
+    <string name="question10_option5">1</string>
 
+    <string name="submit">Submit</string>
 
 </resources>

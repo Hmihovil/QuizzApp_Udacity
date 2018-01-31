@@ -14,20 +14,21 @@ import java.util.List;
 import java.util.Locale;
 
 /**
+
  * Created by Lenovo on 18/01/2018.
+
  */
 
 public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.QuestionHolder> {
 
     private Context mContext;
     private List<Question> mListQuestions;
-    private RecyclerView mAnswerOptions;
-    private AnswerOptionAdapter answerOptionAdapter;
 
     public class QuestionHolder extends RecyclerView.ViewHolder {
 
         public TextView questionNumber;
         public TextView questionText;
+        public RecyclerView mAnswerOptions;
 
         public QuestionHolder(View itemView) {
             super(itemView);
@@ -64,10 +65,9 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
                 question.getNumber()
         ));
         holder.questionText.setText(getStringFromResourcesByName(
-                "question" + (position+1)));
+                "question" + (position + 1)));
 
-        answerOptionAdapter = new AnswerOptionAdapter(mContext, question.getAnswerOptions());
-        mAnswerOptions.setAdapter(answerOptionAdapter);
+        holder.mAnswerOptions.setAdapter(new AnswerOptionAdapter(mContext, question.getAnswerOptions()));
     }
 
     @Override
@@ -75,12 +75,15 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
         return mListQuestions != null ? mListQuestions.size() : 0;
     }
 
-    private String getStringFromResourcesByName(String resourceName){
+    private String getStringFromResourcesByName(String resourceName) {
+
         // Get the application package name
+
         String packageName = mContext.getPackageName();
 
         // Get the string resource id by name
-        int resourceId = mContext.getResources().getIdentifier(resourceName,"string",packageName);
+
+        int resourceId = mContext.getResources().getIdentifier(resourceName, "string", packageName);
 
         // Return the string value
         return mContext.getString(resourceId);
