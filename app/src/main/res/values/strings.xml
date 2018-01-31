@@ -1,0 +1,74 @@
+<resources>
+    <string name="app_name">QuizzApp</string>
+    <string name="question1">What did you learn with this course?</string>
+    <string name="question1_option1">Option 1</string>
+    <string name="question1_option2">Option 2</string>
+    <string name="question1_option3">Option 3</string>
+    <string name="question1_option4">Option 4</string>
+    <string name="question1_option5">Option 5</string>
+
+    <string name="question2">What are the main keywords?</string>
+    <string name="question2_option1">Option 1</string>
+    <string name="question2_option2">Option 2</string>
+    <string name="question2_option3">Option 3</string>
+    <string name="question2_option4">Option 4</string>
+    <string name="question2_option5">Option 5</string>
+
+    <string name="question3">Question 3</string>
+    <string name="question3_option1">Option 1</string>
+    <string name="question3_option2">Option 2</string>
+    <string name="question3_option3">Option 3</string>
+    <string name="question3_option4">Option 4</string>
+    <string name="question3_option5">Option 5</string>
+
+    <string name="question4">Question 4</string>
+    <string name="question4_option1">Option 1</string>
+    <string name="question4_option2">Option 2</string>
+    <string name="question4_option3">Option 3</string>
+    <string name="question4_option4">Option 4</string>
+    <string name="question4_option5">Option 5</string>
+
+    <string name="question5">Question 5</string>
+    <string name="question5_option1">Option 1</string>
+    <string name="question5_option2">Option 2</string>
+    <string name="question5_option3">Option 3</string>
+    <string name="question5_option4">Option 4</string>
+    <string name="question5_option5">Option 5</string>
+
+    <string name="question6">Question 6</string>
+    <string name="question6_option1">Option 1</string>
+    <string name="question6_option2">Option 2</string>
+    <string name="question6_option3">Option 3</string>
+    <string name="question6_option4">Option 4</string>
+    <string name="question6_option5">Option 5</string>
+
+    <string name="question7">Question 7</string>
+    <string name="question7_option1">Option 1</string>
+    <string name="question7_option2">Option 2</string>
+    <string name="question7_option3">Option 3</string>
+    <string name="question7_option4">Option 4</string>
+    <string name="question7_option5">Option 5</string>
+
+    <string name="question8">Question 8</string>
+    <string name="question8_option1">Option 1</string>
+    <string name="question8_option2">Option 2</string>
+    <string name="question8_option3">Option 3</string>
+    <string name="question8_option4">Option 4</string>
+    <string name="question8_option5">Option 5</string>
+
+    <string name="question9">Question 9</string>
+    <string name="question9_option1">Option 1</string>
+    <string name="question9_option2">Option 2</string>
+    <string name="question9_option3">Option 3</string>
+    <string name="question9_option4">Option 4</string>
+    <string name="question9_option5">Option 5</string>
+
+    <string name="question10">Question 10</string>
+    <string name="question10_option1">Option 1</string>
+    <string name="question10_option2">Option 2</string>
+    <string name="question10_option3">Option 3</string>
+    <string name="question10_option4">Option 4</string>
+    <string name="question10_option5">Option 5</string>
+
+
+</resources>
