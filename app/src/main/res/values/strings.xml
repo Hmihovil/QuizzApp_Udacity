@@ -65,11 +65,6 @@
     <string name="question9_option5">200 000&#8211;250 000</string>
 
     <string name="question10">Your score in this quizz will be:</string>
-    <string name="question10_option1">2</string>
-    <string name="question10_option2">3</string>
-    <string name="question10_option3">0</string>
-    <string name="question10_option4">10</string>
-    <string name="question10_option5">1</string>
 
     <string name="submit">Submit</string>
 

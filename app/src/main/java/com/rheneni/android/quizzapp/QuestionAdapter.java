@@ -23,7 +23,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
 
     private Context mContext;
     private List<Question> mListQuestions;
-
+    private List<Integer> mOptionTypes;
     public class QuestionHolder extends RecyclerView.ViewHolder {
 
         public TextView questionNumber;
@@ -41,8 +41,9 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
         }
     }
 
-    public QuestionAdapter(Context context, List<Question> questions) {
+    public QuestionAdapter(Context context, List<Question> questions, List<Integer> optionTypes) {
         mContext = context;
+        mOptionTypes = optionTypes;
         if (questions != null)
             this.mListQuestions = new ArrayList<>(questions);
         else mListQuestions = new ArrayList<>();
@@ -67,7 +68,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
         holder.questionText.setText(getStringFromResourcesByName(
                 "question" + (position + 1)));
 
-        holder.mAnswerOptions.setAdapter(new AnswerOptionAdapter(mContext, question.getAnswerOptions()));
+        holder.mAnswerOptions.setAdapter(new AnswerOptionAdapter(mContext, question.getAnswerOptions(), mOptionTypes.get(position)));
     }
 
     @Override

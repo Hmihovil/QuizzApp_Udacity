@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ public class QuestionLayoutActivity extends AppCompatActivity {
 
     static final int QUESTIONS_NUMBER = 10;
     private List<List<Integer>> mSolutions;
+    private List<Integer> mOptionTypes = new ArrayList<>();
 
     private RecyclerView mRecyclerView;
     private List<Question> mList = new ArrayList<>();
@@ -35,8 +37,8 @@ public class QuestionLayoutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view_layout_recycler);
-        setupRecycler();
         mSolutions = getSolutions();
+        setupRecycler();
     }
 
     private void setupRecycler() {
@@ -45,10 +47,10 @@ public class QuestionLayoutActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(linearLayoutManager);
 
         for(int i = 0; i < QUESTIONS_NUMBER; i++) {
-            mList.add(new Question("Question", i+1));
+            mList.add(new Question("Question", i+1, mOptionTypes.get(i)));
         }
 
-        mAdapter = new QuestionAdapter(this, mList);
+        mAdapter = new QuestionAdapter(this, mList, mOptionTypes);
 
         mRecyclerView.setAdapter(mAdapter);
 
@@ -62,36 +64,47 @@ public class QuestionLayoutActivity extends AppCompatActivity {
         for(int i = 0; i < QUESTIONS_NUMBER; i++) {
             List<Integer> solution = new ArrayList<>();
             //Should change to Enums/constants
-            switch (i){
-                case 0:
-                    solution.add(4);
-                    break;
+            switch (i+1){
                 case 1:
-                    solution.add(5);
+                    solution.add(4);
+                    mOptionTypes.add(AnswerOption.OPTION_TYPE_RADIO);
                     break;
                 case 2:
                     solution.add(3);
+                    solution.add(5);
+                    mOptionTypes.add(AnswerOption.OPTION_TYPE_CHECKBOX);
                     break;
                 case 3:
-                    solution.add(4);
+                    solution.add(3);
+                    mOptionTypes.add(AnswerOption.OPTION_TYPE_RADIO);
                     break;
                 case 4:
-                    solution.add(5);
+                    solution.add(4);
+                    mOptionTypes.add(AnswerOption.OPTION_TYPE_RADIO);
                     break;
                 case 5:
-                    solution.add(1);
+                    solution.add(5);
+                    mOptionTypes.add(AnswerOption.OPTION_TYPE_RADIO);
                     break;
                 case 6:
-                    solution.add(5);
+                    solution.add(1);
+                    mOptionTypes.add(AnswerOption.OPTION_TYPE_RADIO);
                     break;
                 case 7:
-                    solution.add(1);
+                    solution.add(5);
+                    mOptionTypes.add(AnswerOption.OPTION_TYPE_RADIO);
                     break;
                 case 8:
-                    solution.add(4);
+                    solution.add(1);
+                    mOptionTypes.add(AnswerOption.OPTION_TYPE_RADIO);
                     break;
                 case 9:
+                    solution.add(4);
+                    mOptionTypes.add(AnswerOption.OPTION_TYPE_RADIO);
+                    break;
+                case 10:
                     solution.add(1);
+                    mOptionTypes.add(AnswerOption.OPTION_TYPE_FREE);
                     break;
                 default:
                     break;
@@ -103,29 +116,51 @@ public class QuestionLayoutActivity extends AppCompatActivity {
     }
 
     public void showResults(View view) {
-        for(int i = 0; i < QUESTIONS_NUMBER; i++) {
-            List<AnswerOption> listAnswers = mList.get(i).getAnswerOptions();
-            List<Integer> solution = mSolutions.get(i);
+        if(mList.get(9).getAnswerOptions().get(0).getFreeAnswer() == "") {
+            Toast.makeText(this,
+                    "You have to write a number on question " +
+                    QUESTIONS_NUMBER + "!",
+                    Toast.LENGTH_SHORT).show();
+        }
+        else {
+            for (int i = 0; i < QUESTIONS_NUMBER; i++) {
+                List<AnswerOption> listAnswers = mList.get(i).getAnswerOptions();
+                List<Integer> solution = mSolutions.get(i);
+                if (mOptionTypes.get(i) == AnswerOption.OPTION_TYPE_FREE) {
+                    if (Integer.parseInt(listAnswers.get(0).getFreeAnswer()) == questionsCorrect + 1 &&
+                            i + 1 == QUESTIONS_NUMBER) {
+                        questionsCorrect++;
+                    }
+                } else {
+                    boolean isCorrect = true;
+                    for (int j = 0; j < listAnswers.size(); j++) {
+                        //if is checked and is expected to be checked - solution matrix
+                        if (listAnswers.get(j).getIsChecked() && solution.contains(j + 1)) {
+                            continue;
+                        } else if (!listAnswers.get(j).getIsChecked() && !solution.contains(j + 1)) {
+                            continue;
+                        } else {
+                            isCorrect = false;
+                            break;
+                        }
+                    }
+                    if (isCorrect) {
+                        questionsCorrect++;
+                    }
 
-            for(int j = 0; j < listAnswers.size(); j++){
-                //if is checked and is expected to be checked - solution matrix
-                if(listAnswers.get(j).getIsChecked() && solution.contains(j+1)) {
-                    questionsCorrect++;
                 }
             }
+            String questionPlural = " question";
+            if(questionsCorrect != 1) {
+                questionPlural+= "s";
+            }
+            Toast.makeText(this,
+                    "You got " + String.valueOf(questionsCorrect) +
+                            " out of " +
+                            QUESTIONS_NUMBER +
+                            questionPlural + " correct!",
+                    Toast.LENGTH_LONG).show();
+            questionsCorrect = 0;
         }
-
-        String questionPlural = " question";
-        if(questionsCorrect != 1) {
-            questionPlural+= "s";
-        }
-        Toast.makeText(this,
-                "You got " + String.valueOf(questionsCorrect) +
-                        " out of " +
-                        QUESTIONS_NUMBER +
-                        questionPlural + " correct!",
-                Toast.LENGTH_LONG).show();
-        questionsCorrect = 0;
     }
 }
-
