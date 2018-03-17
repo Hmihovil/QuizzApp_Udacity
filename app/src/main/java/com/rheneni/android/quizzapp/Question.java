@@ -1,7 +1,8 @@
 package com.rheneni.android.quizzapp;
 
+import android.content.Context;
+
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Lenovo on 18/01/2018.
@@ -9,52 +10,62 @@ import java.util.List;
 
 public class Question {
 
-    static final int OPTIONS_NUMBER = 5;
-
-    private int mNumber = 0;
+    private int mQuestionNumber = 0;
     private String mQuestionName = "";
-    private List<AnswerOption> mListAnswers = new ArrayList<>();
-    private int mOptionType;
+    private String mQuestionText = "";
+    private ArrayList<AnswerOption> mAnswers = new ArrayList<>();
+    private @AnswerOption.OptionType int mOptionType;
+    private int mOptionsNumber = 5;
+    private ArrayList<Boolean> mSelectedPositions = new ArrayList<>();
+    private int mLastSelectedOption = -1;
+    private Context mContext;
 
-
-    public Question(String name, int number, int optionType) {
+    public Question(Context context, int questionNum, int optionType, int numOptions) {
         mOptionType = optionType;
-        mQuestionName = name;
-        mNumber = number;
-        if(mOptionType != AnswerOption.OPTION_TYPE_FREE) {
-
-            initializeAnswersList();
-        }else{
-            mListAnswers.add(new AnswerOption(mNumber, "Free Answer", 1, mOptionType));
-        }
+        mQuestionNumber = questionNum;
+        mOptionsNumber = numOptions;
+        mContext = context;
+        mQuestionName = mContext.getResources().getString(R.string.question) + mQuestionNumber;
+        mQuestionText = Utilities.getStringFromResourcesByName(mContext,"question" + (mQuestionNumber));
+        initializeOptions();
     }
 
-    public void setNumber(int number) {
-        mNumber = number;
+    public ArrayList<AnswerOption> getAnswerOptions() {
+        return mAnswers;
     }
-
-    public int getNumber() {
-        return mNumber;
-    }
-
-    public void setQuestionName(String name) {
-        mQuestionName = name;
-    }
-
     public String getQuestionName() {
         return mQuestionName;
     }
-
-    public void setAnswerOptions(List<AnswerOption> list) {
-        mListAnswers = list;
+    public String getQuestionText() {
+        return mQuestionText;
     }
-    public List<AnswerOption> getAnswerOptions() {
-        return mListAnswers;
+    public @AnswerOption.OptionType int getOptionType() { return mOptionType; }
+    public int getOptionsNumber() { return mOptionsNumber; }
+    public void setSelectedPositionCheck(int position, boolean value) {
+        mAnswers.get(position).setIsChecked(value);
+        mSelectedPositions.set(position, value);
+    }
+    public boolean getSelectedPositionCheck(int position) {
+        return mSelectedPositions.get(position);
+    }
+    public void setLastSelectedOption(int position) {
+        mLastSelectedOption = position;
     }
 
-    private void initializeAnswersList() {
-        for(int i = 0; i < OPTIONS_NUMBER; i++) {
-            mListAnswers.add(new AnswerOption(mNumber, "Answer option", i+1, mOptionType));
+    public int getLastSelectedOption() {
+        return mLastSelectedOption;
+    }
+
+    private void initializeOptions(){
+        if(mOptionType != AnswerOption.OPTION_TYPE_FREE) {
+            for (int i = 0; i < mOptionsNumber; i++) {
+                mSelectedPositions.add(false);
+                String name = Utilities.getStringFromResourcesByName(
+                        mContext, "question" + (mQuestionNumber) + "_option" + (i + 1));
+                mAnswers.add(new AnswerOption(mQuestionNumber, name, i + 1, mOptionType));
+            }
+        } else {
+            mAnswers.add(new AnswerOption(mQuestionNumber, "", 1, mOptionType));
         }
     }
 }

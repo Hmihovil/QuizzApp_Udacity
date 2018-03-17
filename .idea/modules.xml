@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/QuizzApp.iml" filepath="$PROJECT_DIR$/QuizzApp.iml" />
+      <module fileurl="file://C:\Users\Lenovo\Documents\google_challenge\QuizzApp_Udacity\QuizzApp.iml" filepath="C:\Users\Lenovo\Documents\google_challenge\QuizzApp_Udacity\QuizzApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/QuizzApp_Udacity.iml" filepath="$PROJECT_DIR$/.idea/QuizzApp_Udacity.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

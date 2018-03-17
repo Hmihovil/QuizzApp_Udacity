@@ -6,40 +6,28 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 public class AnswerOption {
-    private int mOrderNum = 0;
+    private int mAnswerNumber = 0;
     private String mOptionText = "";
     private int mQuestionNumber = 0;
     private boolean isChecked = false;
     private String freeAnswer = "1";
     private @OptionType int mOptionType = OPTION_TYPE_RADIO;
 
-    public AnswerOption(int questionNumber, String text, int number, @OptionType int optionType) {
+    public AnswerOption(int questionNumber, String text, int answerNumber, @OptionType int optionType) {
         mOptionType = optionType;
         if(mOptionType != AnswerOption.OPTION_TYPE_FREE) {
             mQuestionNumber = questionNumber;
             mOptionText = text;
-            mOrderNum = number;
+            mAnswerNumber = answerNumber;
         }
     }
 
-    public void setOrderNumber(int number) {
-        mOrderNum = number;
-    }
-
     public int getOrderNumber() {
-        return mOrderNum;
-    }
-
-    public void setOptionText(String text) {
-        mOptionText = text;
+        return mAnswerNumber;
     }
 
     public String getOptionText() {
         return mOptionText;
-    }
-
-    public void setQuestionNumber(int number) {
-        mQuestionNumber = number;
     }
 
     public int getQuestionNumber() {
@@ -59,6 +47,7 @@ public class AnswerOption {
     public String getFreeAnswer(){
         return freeAnswer;
     }
+
     public @OptionType int getOptionType(){
         return mOptionType;
     }

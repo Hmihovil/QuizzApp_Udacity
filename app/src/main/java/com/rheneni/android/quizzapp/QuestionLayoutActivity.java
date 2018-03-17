@@ -5,13 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.util.Pair;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,34 +18,35 @@ import java.util.List;
 public class QuestionLayoutActivity extends AppCompatActivity {
 
     static final int QUESTIONS_NUMBER = 10;
-    private List<List<Integer>> mSolutions;
-    private List<Integer> mOptionTypes = new ArrayList<>();
-
+    private ArrayList<ArrayList<Integer>> mSolutions = new ArrayList<>();
+    private ArrayList<Integer> mOptionTypes = new ArrayList<>();
+    private ArrayList<Integer> mQuestionNumOptions = new ArrayList<>();
     private RecyclerView mRecyclerView;
-    private List<Question> mList = new ArrayList<>();
+    private ArrayList<Question> mQuestions = new ArrayList<>();
     private QuestionAdapter mAdapter;
-    private int questionsCorrect = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view_layout_recycler);
-        mSolutions = getSolutions();
+        fillLists();
+        for(int i = 0; i < QUESTIONS_NUMBER; i++) {
+            mQuestions.add(new Question(this, i+1, mOptionTypes.get(i), mQuestionNumOptions.get(i)));
+        }
+
         setupRecycler();
+
     }
 
     private void setupRecycler() {
 
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view_layout_recycler);
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(linearLayoutManager);
 
-        for(int i = 0; i < QUESTIONS_NUMBER; i++) {
-            mList.add(new Question("Question", i+1, mOptionTypes.get(i)));
-        }
-
-        mAdapter = new QuestionAdapter(this, mList, mOptionTypes);
+        mAdapter = new QuestionAdapter(this, mQuestions);
 
         mRecyclerView.setAdapter(mAdapter);
 
@@ -59,72 +55,80 @@ public class QuestionLayoutActivity extends AppCompatActivity {
                 new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
     }
 
-    private List<List<Integer>> getSolutions() {
-        List<List<Integer>> solutions = new ArrayList<>();
+    private void fillLists() {
         for(int i = 0; i < QUESTIONS_NUMBER; i++) {
-            List<Integer> solution = new ArrayList<>();
+            ArrayList<Integer> solution = new ArrayList<>();
             //Should change to Enums/constants
             switch (i+1){
                 case 1:
                     solution.add(4);
                     mOptionTypes.add(AnswerOption.OPTION_TYPE_RADIO);
+                    mQuestionNumOptions.add(5);
                     break;
                 case 2:
                     solution.add(3);
                     solution.add(5);
                     mOptionTypes.add(AnswerOption.OPTION_TYPE_CHECKBOX);
+                    mQuestionNumOptions.add(5);
                     break;
                 case 3:
                     solution.add(3);
                     mOptionTypes.add(AnswerOption.OPTION_TYPE_RADIO);
+                    mQuestionNumOptions.add(5);
                     break;
                 case 4:
                     solution.add(4);
                     mOptionTypes.add(AnswerOption.OPTION_TYPE_RADIO);
+                    mQuestionNumOptions.add(5);
                     break;
                 case 5:
                     solution.add(5);
                     mOptionTypes.add(AnswerOption.OPTION_TYPE_RADIO);
+                    mQuestionNumOptions.add(5);
                     break;
                 case 6:
                     solution.add(1);
                     mOptionTypes.add(AnswerOption.OPTION_TYPE_RADIO);
+                    mQuestionNumOptions.add(5);
                     break;
                 case 7:
                     solution.add(5);
                     mOptionTypes.add(AnswerOption.OPTION_TYPE_RADIO);
+                    mQuestionNumOptions.add(5);
                     break;
                 case 8:
                     solution.add(1);
                     mOptionTypes.add(AnswerOption.OPTION_TYPE_RADIO);
+                    mQuestionNumOptions.add(5);
                     break;
                 case 9:
                     solution.add(4);
                     mOptionTypes.add(AnswerOption.OPTION_TYPE_RADIO);
+                    mQuestionNumOptions.add(5);
                     break;
                 case 10:
                     solution.add(1);
                     mOptionTypes.add(AnswerOption.OPTION_TYPE_FREE);
+                    mQuestionNumOptions.add(1);
                     break;
                 default:
                     break;
             }
-            solutions.add(solution);
+            mSolutions.add(solution);
         }
-
-        return solutions;
     }
 
     public void showResults(View view) {
-        if(mList.get(9).getAnswerOptions().get(0).getFreeAnswer() == "") {
+        if(mQuestions.get(9).getAnswerOptions().get(0).getFreeAnswer() == "") {
             Toast.makeText(this,
                     "You have to write a number on question " +
-                    QUESTIONS_NUMBER + "!",
+                            QUESTIONS_NUMBER + "!",
                     Toast.LENGTH_SHORT).show();
         }
         else {
+            int questionsCorrect = 0;
             for (int i = 0; i < QUESTIONS_NUMBER; i++) {
-                List<AnswerOption> listAnswers = mList.get(i).getAnswerOptions();
+                List<AnswerOption> listAnswers = mQuestions.get(i).getAnswerOptions();
                 List<Integer> solution = mSolutions.get(i);
                 if (mOptionTypes.get(i) == AnswerOption.OPTION_TYPE_FREE) {
                     if (Integer.parseInt(listAnswers.get(0).getFreeAnswer()) == questionsCorrect + 1 &&
@@ -160,7 +164,6 @@ public class QuestionLayoutActivity extends AppCompatActivity {
                             QUESTIONS_NUMBER +
                             questionPlural + " correct!",
                     Toast.LENGTH_LONG).show();
-            questionsCorrect = 0;
         }
     }
 }

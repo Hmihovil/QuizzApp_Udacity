@@ -68,4 +68,8 @@
 
     <string name="submit">Submit</string>
 
+    <string name="question">Question</string>
+
+    <string name="edit_view_hint">Write your answer here</string>
+
 </resources>
