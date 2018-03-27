@@ -10,7 +10,7 @@ public class AnswerOption {
     private String mOptionText = "";
     private int mQuestionNumber = 0;
     private boolean isChecked = false;
-    private String freeAnswer = "1";
+    private String freeAnswer = "";
     private @OptionType int mOptionType = OPTION_TYPE_RADIO;
 
     public AnswerOption(int questionNumber, String text, int answerNumber, @OptionType int optionType) {
